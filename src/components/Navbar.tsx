@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { motion, AnimatePresence, LazyMotion, domAnimation } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { sections } from './Section';
 import { FaBars, FaTimes } from 'react-icons/fa';

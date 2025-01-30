@@ -10,6 +10,7 @@ import AboutSection from './sections/AboutSection';
 import ProjectsSection from './sections/ProjectsSection';
 import ContactSection from './sections/ContactSection';
 import SkillsSection from './sections/SkillsSection';
+import { HashRouter } from 'react-router-dom';
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -20,25 +21,31 @@ const App = () => {
     }, 2000);
   }, []);
 
+  useEffect(() => {
+    document.title = "Jagadeesh Mandala | Portfolio";
+  }, []);
+
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <>
-          <Navbar />
-          <main>
-            <HomeSection id="home" />
-            <AboutSection id="about" />
-            <SkillsSection id="skills" />
-            <ProjectsSection id="projects" />
-            <ContactSection id="contact" />
-          </main>
-          <ScrollToTop />
-        </>
-      )}
-    </ThemeProvider>
+    <HashRouter>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <>
+            <Navbar />
+            <main>
+              <HomeSection id="home" />
+              <AboutSection id="about" />
+              <SkillsSection id="skills" />
+              <ProjectsSection id="projects" />
+              <ContactSection id="contact" />
+            </main>
+            <ScrollToTop />
+          </>
+        )}
+      </ThemeProvider>
+    </HashRouter>
   );
 };
 

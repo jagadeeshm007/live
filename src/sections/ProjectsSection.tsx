@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 import Section from '../components/Section';
-import { FaGithub, FaExternalLinkAlt, FaReact, FaPython, FaDatabase, FaRocket, FaMobile } from 'react-icons/fa';
+import { FaGithub, FaReact, FaPython, FaDatabase, FaRocket, FaMobile } from 'react-icons/fa';
 import { SiExpo, SiMysql, SiAmazon, SiTensorflow, SiScikitlearn } from 'react-icons/si';
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 
 const ContentWrapper = styled.div`
   min-height: 50vh;

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 import Section from '../components/Section';
-import { FaGraduationCap, FaBriefcase, FaTrophy, FaCertificate, FaCode } from 'react-icons/fa';
+import { FaGraduationCap, FaBriefcase, FaCertificate, FaCode } from 'react-icons/fa';
 
 const ContentWrapper = styled.div`
   max-width: 1200px;

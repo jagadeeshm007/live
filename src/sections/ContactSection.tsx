@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 import Section from '../components/Section';
-import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaTwitter, FaInstagram, FaMedium, FaDev } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 const ContentWrapper = styled.div`
   max-width: 1200px;
@@ -126,7 +126,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ id }) => {
     },
     {
       icon: <FaTwitter />,
-      label: 'Twitter',
+      label: 'X',
       value: '@Jagadeesh140703',
       href: 'https://twitter.com/Jagadeesh140703'
     },

@@ -57,7 +57,6 @@ const ScrollToTop = () => {
   };
 
   return (
-    // @ts-expect-error: framer-motion AnimatePresence return type incompatibility
     <AnimatePresence>
       {isVisible && (
         <ScrollButton

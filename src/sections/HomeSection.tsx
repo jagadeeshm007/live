@@ -1,9 +1,7 @@
 import styled from '@emotion/styled';
 import { motion, useMotionValue, useTransform, useScroll } from 'framer-motion';
 import Section from '../components/Section';
-import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaTrophy, FaCertificate, FaCode, FaDownload } from 'react-icons/fa';
-import profileImage from '../assets/images/pfp.png';
-
+import { FaDownload } from 'react-icons/fa';
 const HeroSection = styled.div`
   min-height: 100vh;
   width: 100%;
@@ -267,7 +265,7 @@ const HomeSection: React.FC<HomeSectionProps> = ({ id }) => {
           </HighlightSection>
 
           <PhotoContainer>
-            <ProfileImage src={profileImage} alt="Jagadeesh Mandala" />
+            <ProfileImage src="https://i.postimg.cc/J0dYFmyx/pfp.png" alt="Jagadeesh Mandala" />
           </PhotoContainer>
         </ContentSection>
       </HeroSection>

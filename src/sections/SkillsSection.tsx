@@ -9,8 +9,7 @@ import {
   SiCplusplus, SiTypescript, SiJavascript, SiMongodb, 
   SiDjango, SiExpress, SiKubernetes, SiJenkins, SiGooglecloud,
   SiReact, SiJira, SiAnsible,
-  SiHtml5, SiCss3, SiExpo, SiGithub,
-  // SiNetworkmanager
+  SiHtml5, SiCss3, SiExpo, SiGithub
 } from 'react-icons/si';
 
 const ContentWrapper = styled.div`
@@ -97,19 +96,19 @@ const Skill = styled(motion.div)`
   }
 `;
 
-interface Skill {
+interface SkillItem {
   name: string;
   icon?: React.ReactNode;
 }
 
-interface SkillCategory {
+interface SkillCategoryItem {
   title: string;
   icon: React.ReactNode;
-  skills: Skill[];
+  skills: SkillItem[];
 }
 
 const SkillsSection: React.FC<{ id: string }> = ({ id }) => {
-  const skillCategories: SkillCategory[] = [
+  const skillCategories: SkillCategoryItem[] = [
     {
       title: "Programming Languages",
       icon: <FaCode />,
