@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { motion, useMotionValue, useTransform, useScroll } from 'framer-motion';
 import Section from '../components/Section';
 import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaTrophy, FaCertificate, FaCode, FaDownload } from 'react-icons/fa';
+import profileImage from '../assets/images/pfp.png';
 
 const HeroSection = styled.div`
   min-height: 100vh;
@@ -60,13 +61,12 @@ const ContentSection = styled(motion.div)`
   gap: 3rem;
   align-items: center;
   z-index: 1;
-  margin-top: 2rem;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     text-align: center;
-    margin-top: 1rem;
-    place-items: center;
+    gap: 1rem;
+    padding: 1rem;
   }
 `;
 
@@ -81,7 +81,8 @@ const PhotoContainer = styled(motion.div)`
   
   @media (max-width: 768px) {
     width: 80%;
-    margin: 0 auto;
+    max-width: 300px;
+    margin: 2rem auto;
   }
 `;
 
@@ -89,6 +90,7 @@ const ProfileImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 `;
 
 const Name = styled(motion.h1)`
@@ -265,7 +267,7 @@ const HomeSection: React.FC<HomeSectionProps> = ({ id }) => {
           </HighlightSection>
 
           <PhotoContainer>
-            <ProfileImage src="pfp.png" alt="Profile" />
+            <ProfileImage src={profileImage} alt="Jagadeesh Mandala" />
           </PhotoContainer>
         </ContentSection>
       </HeroSection>

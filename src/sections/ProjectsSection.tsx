@@ -24,10 +24,13 @@ const Title = styled(motion.h2)`
 `;
 
 const ProjectGrid = styled(motion.div)`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
   padding: 1rem;
-  width: max-content;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 `;
 
 const ProjectCard = styled(motion.div)`
@@ -173,44 +176,11 @@ const GithubButton = styled(motion.a)`
   }
 `;
 
-const ScrollControls = styled.div`
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
-  width: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
-  padding: 0 1rem;
-`;
-
-const ScrollButton = styled(motion.button)`
-  background: rgba(147, 51, 234, 0.8);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  pointer-events: auto;
-  
-  &:hover {
-    background: rgba(147, 51, 234, 1);
-  }
-`;
-
 interface ProjectsSectionProps {
   id: string;
 }
 
 const ProjectsSection: React.FC<ProjectsSectionProps> = ({ id }) => {
-  const [scrollX, setScrollX] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isPaused, setIsPaused] = useState(false);
-  const scrollSpeed = 0.3;
   const [expandedCards, setExpandedCards] = useState<number[]>([]);
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
 
@@ -265,32 +235,6 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ id }) => {
     }
   ];
 
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container || isPaused) return;
-
-    let animationId: number;
-    
-    const animate = () => {
-      setScrollX(prev => {
-        const newScrollX = prev - scrollSpeed;
-        const containerWidth = container.scrollWidth / 2;
-        
-        if (-newScrollX >= containerWidth) {
-          return 0;
-        }
-        return newScrollX;
-      });
-      
-      animationId = requestAnimationFrame(animate);
-    };
-
-    animationId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationId);
-  }, [isPaused, scrollSpeed]);
-
-  const doubledProjects = [...projects, ...projects, ...projects];
-
   const toggleDescription = (index: number) => {
     setExpandedCards(prev => 
       prev.includes(index) 
@@ -307,50 +251,12 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ id }) => {
     );
   };
 
-  const handleScroll = (direction: 'left' | 'right') => {
-    const scrollAmount = direction === 'left' ? 300 : -300;
-    setScrollX(prev => prev + scrollAmount);
-  };
-
   return (
     <Section id={id}>
       <ContentWrapper>
-        <Title
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          Featured Projects
-        </Title>
-
-        <ScrollControls>
-          <ScrollButton
-            onClick={() => handleScroll('left')}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            ←
-          </ScrollButton>
-          <ScrollButton
-            onClick={() => handleScroll('right')}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            →
-          </ScrollButton>
-        </ScrollControls>
-
-        <ProjectGrid
-          ref={containerRef}
-          style={{ 
-            x: scrollX,
-            transition: isPaused ? 'transform 0.3s ease-out' : undefined 
-          }}
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-        >
-          {doubledProjects.map((project, index) => (
+        <Title>Featured Projects</Title>
+        <ProjectGrid>
+          {projects.map((project, index) => (
             <ProjectCard
               key={index}
               initial={{ opacity: 0 }}
