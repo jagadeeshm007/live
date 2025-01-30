@@ -121,8 +121,8 @@ const ContactSection: React.FC<ContactSectionProps> = ({ id }) => {
     {
       icon: <FaLinkedin />,
       label: 'LinkedIn',
-      value: 'Jagadeesh Mandala',
-      href: 'https://linkedin.com/in/jagadeeshmandala'
+      value: 'Mandala Jagadeesh',
+      href: 'https://linkedin.com/in/mandalajagadeesh'
     },
     {
       icon: <FaTwitter />,
