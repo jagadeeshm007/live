@@ -1,0 +1,63 @@
+{
+    "id": "Alpha",
+    "title": "Alpha",
+    "author": "Jagadeesh Mandala",
+    "date": "2025-03-07",
+    "header": "Project Alpha",
+    "description": "Machine learning project implementing fraud detection systems using various ML algorithms including Decision Trees and SVM.",
+    "technologies": [
+        "Python",
+        "Scikit-learn",
+        "Machine Learning",
+        "Decision Trees",
+        "SVM"
+    ],
+    "category": [
+        "ml",
+        "ai"
+    ],
+    "featured": true,
+    "sections": [
+        {
+            "type": "text",
+            "content": "This is an introduction to my Project. I will share insights on development."
+        },
+        {
+            "type": "image",
+            "src": "https://static.vecteezy.com/system/resources/previews/021/596/469/non_2x/made-with-salphabet-element-made-with-sparklers-ready-for-your-inscriptions-on-black-background-free-photo.jpg",
+            "alt": "Alpha Symbol"
+        },
+        {
+            "type": "link",
+            "href": "https://github.com/jagadeeshm007/Alpha",
+            "text": "Read More"
+        },
+        {
+            "type": "text",
+            "content": "This is an introduction to my Project. I will share insights on development."
+        },
+        {
+            "type": "image",
+            "src": "https://static.vecteezy.com/system/resources/previews/021/596/469/non_2x/made-with-salphabet-element-made-with-sparklers-ready-for-your-inscriptions-on-black-background-free-photo.jpg",
+            "alt": "Alpha Symbol"
+        },
+        {
+            "type": "link",
+            "href": "https://github.com/jagadeeshm007/Alpha",
+            "text": "Read More"
+        },{
+            "type": "text",
+            "content": "This is an introduction to my Project. I will share insights on development."
+        },
+        {
+            "type": "image",
+            "src": "https://static.vecteezy.com/system/resources/previews/021/596/469/non_2x/made-with-salphabet-element-made-with-sparklers-ready-for-your-inscriptions-on-black-background-free-photo.jpg",
+            "alt": "Alpha Symbol"
+        },
+        {
+            "type": "link",
+            "href": "https://github.com/jagadeeshm007/Alpha",
+            "text": "Read More"
+        }
+    ]
+}

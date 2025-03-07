@@ -1,0 +1,10 @@
+{
+  "id": "docker-guide",
+  "title": "Docker Documentation",
+  "description": "A comprehensive quick reference guide for common Docker commands and best practices.",
+  "technologies": ["Docker", "DevOps", "Docker Compose"],
+  "githubUrl": "https://github.com/jagadeeshm007/Docker",
+  "category": "other",
+  "featured": false,
+  "date": "2024-07"
+} 

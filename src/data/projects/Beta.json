@@ -1,0 +1,52 @@
+{
+    "id": "Beta",
+    "title": "Beta",
+    "author": "Jagadeesh ",
+    "date": "2025-03-07",
+    "header": "Project Beta",
+    "description": "Project Beta is an advanced machine learning project focused on fraud detection in financial transactions. It leverages multiple ML algorithms, including Decision Trees and Support Vector Machines (SVM), to identify fraudulent activities with high accuracy. The project integrates real-time data processing, feature engineering, and model optimization techniques to enhance detection capabilities. Additionally, it employs data visualization tools for better insights and interpretability of results.",
+    "technologies": [
+        "Python",
+        "TensorFlow",
+        "Keras",
+        "Pandas",
+        "NumPy",
+        "Matplotlib",
+        "Seaborn"
+    ],
+    "category": [
+        "ml",
+        "ai",
+        "fraud detection",
+        "data science"
+    ],
+    "featured": true,
+    "sections": [
+        {
+            "type": "text",
+            "content": "### Introduction\nProject Beta is designed to enhance fraud detection mechanisms by utilizing state-of-the-art machine learning techniques. The project applies supervised learning models to classify transactions as fraudulent or legitimate, with an emphasis on accuracy, precision, and recall."
+        },
+        {
+            "type": "text",
+            "content": "asdfghn [Visit Example](https://example.com \"This is a tooltip\") sdfb"
+        },
+        {
+            "type": "image",
+            "src": "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png",
+            "alt": "Fraud Detection Visualization"
+        },
+        {
+            "type": "text",
+            "content": "### Features\n- **Real-time fraud detection**: Analyzes incoming transactions in real time.\n- **Feature Engineering**: Extracts critical transactional features for better classification.\n- **Model Optimization**: Implements hyperparameter tuning to improve accuracy.\n- **Data Visualization**: Uses Seaborn and Matplotlib to generate meaningful insights.\n- **Scalability**: Can be adapted to large-scale financial institutions."
+        },
+        {
+            "type": "text",
+            "content": "### Technologies Used\nWe employ a range of technologies to build an efficient fraud detection system:\n- **Python** for scripting and model development.\n- **TensorFlow & Keras** for deep learning and model training.\n- **Pandas & NumPy** for data manipulation and processing.\n- **Matplotlib & Seaborn** for visualization."
+        },
+        {
+            "type": "link",
+            "href": "https://github.com/jagadeeshm007/Project-Beta",
+            "text": "Explore the Project on GitHub"
+        }
+    ]
+}

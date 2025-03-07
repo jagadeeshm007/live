@@ -1,0 +1,10 @@
+{
+  "id": "credit-card-fraud",
+  "title": "Credit Card Fraud Detection",
+  "description": "Machine learning project implementing fraud detection systems using various ML algorithms including Decision Trees and SVM.",
+  "technologies": ["Python", "Scikit-learn", "Machine Learning", "Decision Trees", "SVM"],
+  "githubUrl": "https://github.com/jagadeeshm007/Credit_Card_Fraud_Detection",
+  "category": "ml",
+  "featured": true,
+  "date": "2024-11"
+} 

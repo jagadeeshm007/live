@@ -1,0 +1,31 @@
+{
+  "id": "lp-rail-app",
+  "title": "LP Rail App",
+  "author": "Jagadeesh Mandala",
+  "date": "2024-01",
+  "header": "LP Rail App - Internal Tool",
+  "description": "An internal tool developed for LP Rail Products, a startup company. The app streamlines and manages workflow processes using React Native and Firebase.",
+  "technologies": ["React Native", "TypeScript", "Firebase", "Expo", "Android"],
+  "category": ["mobile", "enterprise"],
+  "featured": true,
+  "sections": [
+    {
+      "type": "text",
+      "content": "LP Rail App is a comprehensive internal tool designed to streamline workflow processes for LP Rail Products. Built with React Native and Firebase, it provides a robust platform for managing rail-related operations."
+    },
+    {
+      "type": "image",
+      "src": "/projects/lp-rail-app/main.png",
+      "alt": "LP Rail App Interface"
+    },
+    {
+      "type": "text",
+      "content": "Key Features:\n- Real-time data synchronization using Firebase\n- Cross-platform compatibility with Expo\n- TypeScript implementation for type safety\n- Secure authentication and authorization\n- Offline data persistence"
+    },
+    {
+      "type": "link",
+      "href": "https://github.com/jagadeeshm007/LP_Rail_App",
+      "text": "View Source Code"
+    }
+  ]
+} 

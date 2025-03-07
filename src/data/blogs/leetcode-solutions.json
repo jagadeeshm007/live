@@ -1,0 +1,10 @@
+{
+  "id": "leetcode-solutions",
+  "title": "LeetCode Solutions",
+  "description": "Collection of Data Structures and Algorithms solutions from LeetCode, implemented in C++.",
+  "technologies": ["C++", "Data Structures", "Algorithms"],
+  "githubUrl": "https://github.com/jagadeeshm007/leetcode",
+  "category": "other",
+  "featured": false,
+  "date": "2024-12"
+} 

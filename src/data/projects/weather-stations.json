@@ -1,0 +1,10 @@
+{
+  "id": "weather-stations",
+  "title": "Weather Stations Clustering",
+  "description": "Implementation of DBSCAN clustering algorithm for weather station data analysis and visualization.",
+  "technologies": ["Python", "Machine Learning", "DBSCAN", "Data Visualization"],
+  "githubUrl": "https://github.com/jagadeeshm007/Weather_Stations_Clustering",
+  "category": "ml",
+  "featured": false,
+  "date": "2024-05"
+} 

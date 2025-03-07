@@ -1,0 +1,10 @@
+{
+  "id": "movie-recommendation-system",
+  "title": "Movie Recommendation System",
+  "description": "A comprehensive movie recommendation system using machine learning techniques, integrated with a mobile application.",
+  "technologies": ["Python", "Machine Learning", "TypeScript", "React Native", "TMDB API"],
+  "githubUrl": "https://github.com/jagadeeshm007/Movie_Recommendation_System",
+  "category": "ml",
+  "featured": true,
+  "date": "2024-04"
+} 

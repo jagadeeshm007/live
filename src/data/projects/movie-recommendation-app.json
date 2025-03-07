@@ -1,0 +1,10 @@
+{
+  "id": "movie-recommendation-app",
+  "title": "Movie Recommendation App",
+  "description": "A cross-platform mobile application built with React Native and Expo, featuring TypeScript integration and TMDB API for movie recommendations.",
+  "technologies": ["React Native", "TypeScript", "Expo", "TMDB API", "Machine Learning"],
+  "githubUrl": "https://github.com/jagadeeshm007/Movie_Recommendation_Search_App",
+  "category": "mobile",
+  "featured": true,
+  "date": "2024-04"
+} 

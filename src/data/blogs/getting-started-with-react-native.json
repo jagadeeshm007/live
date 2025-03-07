@@ -1,0 +1,11 @@
+{
+  "id": "getting-started-with-react-native",
+  "title": "Getting Started with React Native",
+  "date": "2024-03-15",
+  "excerpt": "Learn the basics of React Native development and how to create your first mobile app.",
+  "image": "https://source.unsplash.com/random/800x600?react-native",
+  "tags": ["React Native", "Mobile Development", "JavaScript"],
+  "author": "Your Name",
+  "readTime": "8 min read",
+  "content": "# Getting Started with React Native\n\nReact Native is a powerful framework for building mobile applications using React. This guide will help you get started with React Native development.\n\n## What is React Native?\n\nReact Native is a framework that allows you to build native mobile applications using React. It provides a set of components that map directly to native UI components.\n\n## Key Benefits\n\n- Cross-platform development\n- Native performance\n- Large ecosystem\n- Hot reloading\n- Code reuse\n\n## Getting Started\n\n1. Install Node.js\n2. Install React Native CLI\n3. Create a new project\n4. Run the development server\n\n## Next Steps\n\n- Learn about React Native components\n- Understand navigation\n- Explore third-party libraries\n- Build your first app"
+} 
