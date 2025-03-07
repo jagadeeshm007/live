@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-import MusicPlayer from '../components/MusicPlayer'; // Import the MusicPlayer component
+// import MusicPlayer from '../components/MusicPlayer'; // Import the MusicPlayer component
 
 const AboutPageContainer = styled.div`
   max-width: 1000px;
@@ -249,7 +249,7 @@ export const AboutPage = () => {
       </AboutPageContainer>
       
       {/* Add the Music Player component */}
-      <MusicPlayer />
+      {/* <MusicPlayer /> */}
     </>
   );
 };

@@ -123,8 +123,13 @@ const TogglePlayerButton = styled.button`
 // Music Player Component
 const MusicPlayer = () => {
   const [isVisible, setIsVisible] = useState(true);
-  const [songs] = useState([
-    { title: "No.1 Party Anthem", file: "src/data/songs/song1.mp3" }
+  interface Song {
+    title: string;
+    file: string;
+  }
+
+  const [songs] = useState<Song[]>([
+    // { title: "No.1 Party Anthem", file: "src/data/songs/song1.mp3" }
   ]);
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -235,11 +240,11 @@ const MusicPlayer = () => {
           
           <audio 
             ref={audioRef}
-            src={songs[currentSongIndex].file}
+            src={songs[currentSongIndex].file || ""}
           />
           
           <SongInfo>
-            {songs[currentSongIndex].title}
+            {songs[currentSongIndex].title || ""}
           </SongInfo>
           
           <PlayerControls>
