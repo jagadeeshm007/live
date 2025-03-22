@@ -30,3 +30,36 @@
     "CompanyRegistration": "uploaded_link"
   }
 }
+
+
+model Vendors {
+  VendorID          Int        @id @default(autoincrement())
+  VendorName        String
+  CompanyType       String     // Partnership, Proprietorship, LLP/Pvt, Limited
+  Address          String?
+  BillingAddress1   String?
+  BillingAddress2   String?
+  BillingState      String?
+  BillingCountry    String?
+  BillingPincode    String?
+  ShippingAddress1  String?
+  ShippingAddress2  String?
+  ShippingState     String?
+  ShippingCountry   String?
+  ShippingPincode   String?
+  SameAsBilling     Boolean    @default(false)
+  ContactPerson     String
+  ContactNumber     String
+  Email             String
+  CIN               String?
+  GST               String?
+  PAN               String?
+  AuthorizedPerson  String?
+  AuthContactNumber String?
+  RDCNumber         String?
+  RDCDate           DateTime?
+  ExpReinDate       DateTime?
+  RequiredDocuments Json?
+  PurchaseOrders    PurchaseOrders[]
+  Quotations        Quotations[]
+}
