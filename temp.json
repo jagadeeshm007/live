@@ -1,0 +1,32 @@
+{
+  "VendorName": "Tech Solutions Pvt Ltd",
+  "CompanyType": "Pvt",
+  "Address": "123, Silicon Valley, CA, USA",
+  "BillingAddress1": "456, Business Park",
+  "BillingAddress2": "Near Tech Street",
+  "BillingState": "California",
+  "BillingCountry": "USA",
+  "BillingPincode": "94016",
+  "ShippingAddress1": "789, Logistic Hub",
+  "ShippingAddress2": "Suite 10",
+  "ShippingState": "California",
+  "ShippingCountry": "USA",
+  "ShippingPincode": "94017",
+  "SameAsBilling": false,
+  "ContactPerson": "JohnDoe",
+  "ContactNumber": "9876543210",
+  "Email": "contact@techsolutions.com",
+  "CIN": "U12345CA2024PTC00001",
+  "GST": "22ABCDE1234F1Z5",
+  "PAN": "ABCDE1234F",
+  "AuthorizedPerson": "Jane Doe",
+  "AuthContactNumber": "9123456789",
+  "RDCNumber": "RDC-2024-0001",
+  "RDCDate": "2024-01-01T00:00:00.000Z",
+  "ExpReinDate": "2026-01-01T00:00:00.000Z",
+  "RequiredDocuments": {
+    "GSTCertificate": "uploaded_link",
+    "PANCard": "uploaded_link",
+    "CompanyRegistration": "uploaded_link"
+  }
+}
