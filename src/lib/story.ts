@@ -26,7 +26,9 @@ export const story = {
   target: 0,
   /** Skill cluster focus: -1 overview, 0..5 clusters. */
   focus: -1,
-  /** Philosophy chaos → order, 0..1. */
+  /** Origin waypoint: -1 overview, 0..5 milestones. */
+  milestone: -1,
+  /** Principles chaos → order, 0..1. */
   order: 0,
   /** Normalised pointer position -1..1. */
   pointer: { x: 0, y: 0 },

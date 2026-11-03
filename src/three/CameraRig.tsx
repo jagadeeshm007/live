@@ -3,7 +3,8 @@ import { useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import { STOP_COUNT, STOP_NAMES, story } from '../lib/story';
 import type { Tier } from '../lib/device';
-import { clusterCenters } from './formations';
+import { clusterCenters, pathCurve } from './formations';
+import { journey, skillGroups } from '../data/portfolio';
 import { live } from './live';
 
 /**
@@ -33,6 +34,8 @@ const outward = new THREE.Vector3();
 const UP = new THREE.Vector3(0, 1, 0);
 const overviewCam = new THREE.Vector3();
 const overviewLook = new THREE.Vector3();
+const waypoint = new THREE.Vector3();
+const WAYPOINT_OFFSET = new THREE.Vector3(-1.6, 1.1, 3.4);
 
 type Props = { tier: Tier; reduced: boolean };
 
@@ -61,6 +64,18 @@ export function CameraRig({ tier, reduced }: Props) {
     const k = KEYS[i];
     cam.fromArray(k.cam);
     look.fromArray(k.look);
+    if (i === 1) {
+      // Origin: ride along the path to the waypoint being read.
+      const m = Math.min(journey.length - 1, Math.max(0, live.milestone));
+      pathCurve.getPoint(m / (journey.length - 1), waypoint);
+      overviewCam.fromArray(k.cam);
+      overviewLook.fromArray(k.look);
+      cam.copy(waypoint).add(WAYPOINT_OFFSET);
+      look.copy(waypoint).lerp(overviewLook, 0.25);
+      const o = ease(Math.min(1, Math.max(0, -live.milestone)));
+      cam.lerp(overviewCam, o);
+      look.lerp(overviewLook, o);
+    }
     if (i === 2) {
       // Toolkit: travel around the ring to the focused cluster.
       // focus < 0 is the overview of the whole system; 0..5 travels the ring.
@@ -86,6 +101,7 @@ export function CameraRig({ tier, reduced }: Props) {
     if (!live.initialised) {
       live.p = story.target;
       live.focus = story.focus;
+      live.milestone = story.milestone;
       live.order = story.order;
       live.initialised = true;
     }
@@ -93,11 +109,13 @@ export function CameraRig({ tier, reduced }: Props) {
       // No camera travel: snap between chapters.
       live.p = Math.round(story.target);
       live.focus = Math.round(story.focus);
+      live.milestone = Math.round(story.milestone);
       live.order = 1;
     } else {
       const k = 1 - Math.exp(-delta * 3.2);
       live.p += (story.target - live.p) * k;
       live.focus += (story.focus - live.focus) * k;
+      live.milestone += (story.milestone - live.milestone) * k;
       live.order += (story.order - live.order) * k;
     }
 
@@ -129,7 +147,11 @@ export function CameraRig({ tier, reduced }: Props) {
 
     // HUD annotation (direct DOM write, no React state).
     if (story.hud) {
-      const name = STOP_NAMES[Math.round(p)];
+      const stop = Math.round(p);
+      let name: string = STOP_NAMES[stop];
+      if (stop === 1 && live.milestone > -0.5) name += ` · ${journey[Math.round(Math.max(0, live.milestone))].when}`;
+      if (stop === 2 && live.focus > -0.5) name += ` · ${skillGroups[Math.round(Math.max(0, live.focus))].name}`;
+      name = name.toUpperCase();
       const s = `${name}  ·  X ${camera.position.x.toFixed(2)}  Y ${camera.position.y.toFixed(2)}  Z ${camera.position.z.toFixed(2)}`;
       if (s !== lastHud.current) {
         story.hud.textContent = s;

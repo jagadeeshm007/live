@@ -61,8 +61,36 @@ export function useStoryScroll({ reduced, onChapter, progressEl }: Options) {
         });
       });
 
+      // ---- Origin: travel the path, one waypoint at a time ---------------
+      const waypoints = gsap.utils.toArray<HTMLElement>('[data-milestone]');
+      const wpParts = new Array(waypoints.length).fill(0);
+      waypoints.forEach((el, k) => {
+        const set = (p: number) => {
+          wpParts[k] = p;
+          story.milestone = wpParts.reduce((a, b) => a + b, 0) - 1;
+          story.invalidate?.();
+        };
+        ScrollTrigger.create({
+          trigger: el,
+          start: 'top 75%',
+          end: 'top 40%',
+          onUpdate: (self) => set(self.progress),
+          onRefresh: (self) => set(self.progress),
+        });
+      });
+
+      // ---- Active highlight for the block being read ----------------------
+      gsap.utils.toArray<HTMLElement>('[data-milestone], [data-skill]').forEach((el) => {
+        ScrollTrigger.create({
+          trigger: el,
+          start: 'top 62%',
+          end: 'bottom 38%',
+          toggleClass: { targets: el, className: 'is-active' },
+        });
+      });
+
       // ---- Principles: chaos → order --------------------------------------
-      const phil = document.querySelector<HTMLElement>('#philosophy');
+      const phil = document.querySelector<HTMLElement>('#principles');
       if (phil) {
         const set = (p: number) => {
           story.order = p;
@@ -148,16 +176,58 @@ export function useStoryScroll({ reduced, onChapter, progressEl }: Options) {
         scrollTrigger: { trigger: '#intro', start: '10% top', end: '60% top', scrub: true },
       });
 
-      // Journey: the timeline spine draws as you read.
+      // Journey: the spine draws as you read.
       gsap.fromTo(
-        '.timeline__spine-fill',
+        '.waypoints__spine-fill',
         { scaleY: 0 },
         {
           scaleY: 1,
           ease: 'none',
-          scrollTrigger: { trigger: '.timeline', start: 'top 70%', end: 'bottom 60%', scrub: true },
+          scrollTrigger: { trigger: '.waypoints', start: 'top 60%', end: 'bottom 50%', scrub: true },
         },
       );
+
+      // Numbers count up once they enter (final values are already in the HTML).
+      gsap.utils.toArray<HTMLElement>('[data-count]').forEach((el) => {
+        const end = Number(el.dataset.count);
+        const obj = { v: 0 };
+        gsap.to(obj, {
+          v: end,
+          duration: 1.6,
+          ease: 'power2.out',
+          onUpdate: () => {
+            el.textContent = Math.round(obj.v).toLocaleString('en-IN');
+          },
+          scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+        });
+        el.textContent = '0';
+      });
+
+      // Skills: signature chips sweep in when their cluster becomes active.
+      gsap.utils.toArray<HTMLElement>('[data-skill]').forEach((el) => {
+        gsap.from(el.querySelectorAll('.chip'), {
+          y: 18,
+          autoAlpha: 0,
+          scale: 0.9,
+          duration: 0.6,
+          ease: 'back.out(1.6)',
+          stagger: 0.04,
+          scrollTrigger: { trigger: el, start: 'top 70%', toggleActions: 'play none none reverse' },
+        });
+      });
+
+      // Projects: the "how" pipeline draws its connector.
+      gsap.utils.toArray<HTMLElement>('.flow').forEach((el) => {
+        gsap.fromTo(
+          el,
+          { '--flow': 0 },
+          {
+            '--flow': 1,
+            ease: 'none',
+            scrollTrigger: { trigger: el, start: 'top 80%', end: 'bottom 60%', scrub: true },
+          },
+        );
+      });
 
       // Hero intro (short, non-blocking).
       gsap.from('.hero [data-intro]', {
@@ -208,6 +278,9 @@ export function useStoryScroll({ reduced, onChapter, progressEl }: Options) {
       ro.disconnect();
       window.clearTimeout(roTimer);
       ctx.revert();
+      document.querySelectorAll<HTMLElement>('[data-count]').forEach((el) => {
+        el.textContent = Number(el.dataset.count).toLocaleString('en-IN');
+      });
     };
   }, [reduced, onChapter, progressEl]);
 

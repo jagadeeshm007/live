@@ -10,16 +10,14 @@ export function Projects() {
         <div className="projects__head">
           <ChapterTag index="05" label="Project Worlds" />
           <Lines id="projects-title" lines={['What I have', <em key="e">built.</em>]} className="display" />
+          <p className="lede" data-reveal="fade">
+            Each project in four questions: what it is, why it exists, how it works, and how it is built to hold up.
+          </p>
         </div>
       </div>
 
       {projects.map((p, i) => (
-        <article
-          className={`project project--${p.id}`}
-          key={p.id}
-          data-stop={4 + i}
-          aria-labelledby={`project-${p.id}`}
-        >
+        <article className={`project project--${p.id}`} key={p.id} data-stop={4 + i} aria-labelledby={`project-${p.id}`}>
           <div className="shell project__grid">
             <header className="project__head" data-reveal="fade">
               <p className="project__index">{p.index}</p>
@@ -41,49 +39,52 @@ export function Projects() {
               </div>
             </header>
 
-            <div className="project__body">
-              <div className="project__ps" data-reveal="fade">
-                <div>
-                  <h4 className="label">Problem</h4>
-                  <p>{p.problem}</p>
-                </div>
-                <div>
-                  <h4 className="label">Solution</h4>
-                  <p>{p.solution}</p>
-                </div>
+            <div className="qa" data-reveal="fade">
+              <div className="qa__row">
+                <h4 className="qa__q">
+                  <span>01</span> What is it?
+                </h4>
+                <p className="qa__a qa__a--lead">{p.what}</p>
               </div>
+              <div className="qa__row">
+                <h4 className="qa__q">
+                  <span>02</span> Why does it exist?
+                </h4>
+                <p className="qa__a">{p.why}</p>
+              </div>
+            </div>
 
-              <div className="project__cols">
-                <div data-reveal="fade">
-                  <h4 className="label">Architecture</h4>
-                  <ul className="ticks">
-                    {p.architecture.map((a) => (
-                      <li key={a}>{a}</li>
-                    ))}
-                  </ul>
-                </div>
-                <div data-reveal="fade">
-                  <h4 className="label">Key decisions</h4>
-                  <ul className="ticks">
-                    {p.decisions.map((d) => (
-                      <li key={d}>{d}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+            <div className="flow-wrap">
+              <h4 className="qa__q" data-reveal="fade">
+                <span>03</span> How does it work?
+              </h4>
+              <ol className="flow" data-reveal="stagger">
+                {p.how.map((h, k) => (
+                  <li className="flow__step" key={h.step}>
+                    <p className="flow__n">
+                      {String(k + 1).padStart(2, '0')} · {h.step}
+                    </p>
+                    <p className="flow__title">{h.title}</p>
+                    <p className="flow__body">{h.body}</p>
+                  </li>
+                ))}
+              </ol>
+            </div>
 
-              <div className="project__foot" data-reveal="fade">
-                <p className="project__outcome">
-                  <span className="label">Outcome</span> {p.outcome}
-                </p>
-                <ul className="chips chips--quiet" aria-label={`${p.name} stack`}>
-                  {p.stack.map((s) => (
-                    <li className="chip" key={s}>
-                      {s}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <div className="build" data-reveal="fade">
+              <h4 className="qa__q">
+                <span>04</span> How is it engineered to last?
+              </h4>
+              <ul className="ticks">
+                {p.build.map((b) => (
+                  <li key={b}>{b}</li>
+                ))}
+              </ul>
+              <ul className="tags tags--stack" aria-label={`${p.name} stack`}>
+                {p.stack.map((s) => (
+                  <li key={s}>{s}</li>
+                ))}
+              </ul>
             </div>
           </div>
         </article>

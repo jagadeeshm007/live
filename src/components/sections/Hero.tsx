@@ -1,14 +1,20 @@
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
-import { profile } from '../../data/portfolio';
+import { availability, profile } from '../../data/portfolio';
 
 export function Hero() {
   return (
     <section id="intro" className="chapter hero" data-chapter data-stop="0" aria-labelledby="hero-title">
       <div className="hero__inner shell">
-        <div className="hero__meta">
+        <div className="hero__meta hero__top">
           <p className="eyebrow" data-intro>
             <span className="eyebrow__dot" aria-hidden="true" /> Portfolio · {profile.location}
           </p>
+          <a className="status-pill" href="#contact" data-intro>
+            <span className="pulse" aria-hidden="true" />
+            <span>
+              {availability.facts[0].value} · {availability.facts[1].value} · {availability.facts[3].value}
+            </span>
+          </a>
         </div>
 
         <h1 className="hero__name" id="hero-title" data-reveal="lines">

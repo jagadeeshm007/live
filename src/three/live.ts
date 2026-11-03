@@ -2,6 +2,7 @@
 export const live = {
   p: 0,
   focus: 0,
+  milestone: -1,
   order: 0,
   initialised: false,
 };

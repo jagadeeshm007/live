@@ -1,5 +1,5 @@
 import { ArrowUpRight, FileText, Mail } from 'lucide-react';
-import { profile } from '../../data/portfolio';
+import { availability, profile } from '../../data/portfolio';
 import { GithubIcon, LinkedinIcon } from '../ui/BrandIcons';
 import { ChapterTag, Lines } from '../ui/Lines';
 
@@ -45,6 +45,26 @@ export function Contact() {
             </a>
           </li>
         </ul>
+
+        <section className="avail" aria-labelledby="avail-title" data-reveal="fade">
+          <h3 className="avail__title" id="avail-title">
+            <span className="pulse" aria-hidden="true" /> {availability.headline}
+          </h3>
+          <dl className="avail__facts">
+            {availability.facts.map((f) => (
+              <div key={f.label}>
+                <dt>{f.label}</dt>
+                <dd>{f.value}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="label avail__roles-label">Roles I’m open to</p>
+          <ul className="avail__roles">
+            {availability.roles.map((r) => (
+              <li key={r}>{r}</li>
+            ))}
+          </ul>
+        </section>
       </div>
     </section>
   );

@@ -21,13 +21,14 @@ npm run deploy     # publish dist/ to GitHub Pages
 | 03 Skills | `#skills` | 2 · six linked clusters; camera travels to the one being read |
 | 04 Experience | `#experience` | 3 · four architecture layers joined by service pipes |
 | 05 Projects | `#project-latte`, `#project-nemo` | 4 · two-speaker waveform · 5 · gateway, six services, three LLM providers |
-| 06 Philosophy | `#philosophy` | 6 · chaos settling into a lattice as you read |
+| 06 Principles | `#principles` | 6 · chaos settling into a lattice as you read |
 | 07 Future | `#future` | 7 · wide horizon grid |
 | 08 Contact | `#contact` | 8 · a single calm ring |
 
 - **One canvas, one particle system.** `src/three/formations.ts` generates each formation procedurally, with a fixed seed so every run looks the same. The vertex shader in `ParticleField.tsx` morphs particles between formations with a per-particle stagger.
 - **One scroll controller.** `src/lib/useStoryScroll.ts` creates every ScrollTrigger inside a `gsap.context`, and all of them are reverted on unmount. ScrollTrigger writes progress into a mutable store (`src/lib/story.ts`). The render loop (`CameraRig.tsx`) smooths that progress and works out the camera from it. This means no React re-renders while scrolling, and the same scroll position always gives the same frame in either direction.
 - **No scroll hijacking and no pinning.** Scrolling is native, anchors are real links, and deep links such as `/#projects` are honoured after the app loads.
+- **Origin and Skills sub-steps:** the camera rides the path to the waypoint being read (a beacon marks it), and travels the skills ring to the active cluster, whose signature tools light up.
 - **Content lives in the DOM** (`src/data/portfolio.ts`). WebGL is decoration only and is code-split.
 
 ## Fallbacks and performance

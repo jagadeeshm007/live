@@ -61,6 +61,28 @@ const V = (x: number, y: number, z: number) => new THREE.Vector3(x, y, z);
 
 export function Structures() {
   const core = useRef<THREE.LineSegments>(null);
+  const beacon = useRef<THREE.Group>(null);
+  const beaconMat = useMemo(
+    () =>
+      new THREE.MeshBasicMaterial({
+        color: palette.accent,
+        transparent: true,
+        opacity: 0,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending,
+      }),
+    [],
+  );
+  const haloMat = useMemo(() => beaconMat.clone(), [beaconMat]);
+  const beaconGeo = useMemo(() => new THREE.SphereGeometry(1, 20, 14), []);
+  useEffect(
+    () => () => {
+      beaconMat.dispose();
+      haloMat.dispose();
+      beaconGeo.dispose();
+    },
+    [beaconMat, haloMat, beaconGeo],
+  );
 
   const coreSet = useLineSet(
     () => new THREE.WireframeGeometry(new THREE.IcosahedronGeometry(1.05, 1)),
@@ -122,6 +144,17 @@ export function Structures() {
       core.current.visible = w > 0.001;
     }
     pathSet.material.opacity = 0.32 * stopWeight(p, 1);
+    if (beacon.current) {
+      // A beacon travels the origin path, marking the waypoint being read.
+      const w = stopWeight(p, 1) * Math.min(1, Math.max(0, live.milestone + 1));
+      const m = Math.min(pathPoints.length - 1, Math.max(0, live.milestone));
+      pathCurve.getPoint(m / (pathPoints.length - 1), beacon.current.position);
+      const pulse = 1 + Math.sin(t * 3) * 0.15;
+      beacon.current.children[1].scale.setScalar(0.32 * pulse);
+      beaconMat.opacity = 0.95 * w;
+      haloMat.opacity = 0.16 * w;
+      beacon.current.visible = w > 0.002;
+    }
     graphSet.material.opacity = 0.22 * stopWeight(p, 2);
     layerSet.material.opacity = 0.26 * stopWeight(p, 3);
     nemoSet.material.opacity = 0.26 * stopWeight(p, 5);
@@ -134,6 +167,10 @@ export function Structures() {
   return (
     <group>
       <lineSegments ref={core} geometry={coreSet.geometry} material={coreSet.material} />
+      <group ref={beacon}>
+        <mesh geometry={beaconGeo} material={beaconMat} scale={0.06} />
+        <mesh geometry={beaconGeo} material={haloMat} scale={0.32} />
+      </group>
       <lineSegments geometry={pathSet.geometry} material={pathSet.material} />
       <lineSegments geometry={graphSet.geometry} material={graphSet.material} />
       <lineSegments geometry={layerSet.geometry} material={layerSet.material} />

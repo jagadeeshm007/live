@@ -6,7 +6,7 @@ import { Journey } from './components/sections/Journey';
 import { Toolkit } from './components/sections/Toolkit';
 import { Experience } from './components/sections/Experience';
 import { Projects } from './components/sections/Projects';
-import { Philosophy } from './components/sections/Philosophy';
+import { Principles } from './components/sections/Principles';
 import { Frontier } from './components/sections/Frontier';
 import { Contact, Footer } from './components/sections/Contact';
 import { useStoryScroll } from './lib/useStoryScroll';
@@ -84,7 +84,7 @@ export default function App() {
         <Toolkit />
         <Experience />
         <Projects />
-        <Philosophy />
+        <Principles />
         <Frontier />
         <Contact />
       </main>
