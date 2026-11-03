@@ -473,7 +473,7 @@ export const projects: Project[] = [
 
 export type Principle = { lp: string; claim: string; proof: string; tag: string };
 
-/** Amazon Leadership Principles, each tied to work on the resume. */
+/** Working principles, each tied to work on the resume. */
 export const principles: Principle[] = [
   {
     lp: 'Customer Obsession',

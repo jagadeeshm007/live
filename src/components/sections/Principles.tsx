@@ -6,10 +6,10 @@ export function Principles() {
     <section id="principles" className="chapter principles" data-chapter data-stop="6" aria-labelledby="principles-title">
       <div className="shell">
         <div className="principles__lead">
-          <ChapterTag index="06" label="Leadership Principles" />
+          <ChapterTag index="06" label="How I Work" />
           <Lines id="principles-title" lines={['Principles,', <em key="e">with receipts.</em>]} className="display" />
           <p className="lede" data-reveal="fade">
-            Amazon’s Leadership Principles are how I measure my own work. Each one below points to something I actually
+            The principles I hold my own work to. Each one below points to something I actually
             did. Watch the scene: the noise resolves into structure as you read.
           </p>
         </div>

@@ -14,7 +14,7 @@ export function Experience() {
           <Lines id="experience-title" lines={['Stories from', <em key="e">production.</em>]} className="display" />
           <p className="lede" data-reveal="fade">
             Not a list of duties — the problems I walked into, what I did about them, and what changed. Each one is tagged
-            with the leadership principle it comes from.
+            with the principle behind it.
           </p>
         </div>
 
@@ -76,7 +76,7 @@ export function Experience() {
                     )}
 
                     <div className="story__foot">
-                      <ul className="lp-badges" aria-label="Leadership principles">
+                      <ul className="lp-badges" aria-label="Principles">
                         {s.principles.map((p) => (
                           <li key={p}>{p}</li>
                         ))}
