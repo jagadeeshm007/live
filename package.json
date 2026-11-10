@@ -1,29 +1,25 @@
 {
-  "name": "jagadeesh-mandala-portfolio",
+  "name": "jagadeesh-mandala-professional",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://jagadeeshm007.github.io/live/",
+  "homepage": "https://jagadeeshm007.github.io/live/pro/",
   "scripts": {
     "dev": "vite",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "build": "tsc --noEmit -p tsconfig.json && vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist -e pro -t -m 'Deploy professional portfolio to /live/pro/'"
   },
   "dependencies": {
-    "@react-three/fiber": "^9.8.2",
-    "gsap": "^3.15.0",
     "lucide-react": "^1.66.0",
     "react": "^19.3.1",
-    "react-dom": "^19.3.1",
-    "three": "^0.174.0"
+    "react-dom": "^19.3.1"
   },
   "devDependencies": {
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
-    "@types/three": "^0.174.0",
     "@vitejs/plugin-react": "^4.7.0",
     "gh-pages": "^6.3.0",
     "typescript": "~5.7.2",
