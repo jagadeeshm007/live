@@ -408,10 +408,7 @@ main:focus {
 }
 
 .hero__grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-  align-items: center;
-  gap: clamp(24px, 4vw, 56px);
+  max-width: 860px;
   margin-top: 28px;
 }
 .hero-card {
@@ -490,7 +487,7 @@ main:focus {
   transform: scaleX(1);
 }
 .hero-card__pitch {
-  min-height: 7.6em;
+  min-height: 5.2em;
   margin: 22px 0 0 36px;
   font-family: var(--f-mono);
   font-size: clamp(14.5px, 1.25vw, 16.5px);
@@ -509,106 +506,6 @@ main:focus {
   flex-wrap: wrap;
   gap: 10px;
   margin: 26px 0 0 36px;
-}
-
-/* Glass cube (CSS 3D) */
-.cube-stage {
-  position: relative;
-  display: grid;
-  place-items: center;
-  height: clamp(280px, 30vw, 380px);
-  perspective: 1000px;
-}
-.cube {
-  --s: clamp(150px, 15vw, 210px);
-  position: relative;
-  width: var(--s);
-  height: var(--s);
-  transform-style: preserve-3d;
-  animation: spin 22s linear infinite;
-}
-.cube-stage:hover .cube {
-  animation-play-state: paused;
-}
-@keyframes spin {
-  from {
-    transform: rotateX(-24deg) rotateY(0deg);
-  }
-  to {
-    transform: rotateX(-24deg) rotateY(360deg);
-  }
-}
-.cube__face {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  border: 1px solid rgba(20, 20, 20, 0.14);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(236, 236, 233, 0.5));
-  box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.6);
-  backface-visibility: visible;
-}
-.cube__face--front {
-  transform: translateZ(calc(var(--s) / 2));
-}
-.cube__face--back {
-  transform: rotateY(180deg) translateZ(calc(var(--s) / 2));
-}
-.cube__face--right {
-  transform: rotateY(90deg) translateZ(calc(var(--s) / 2));
-}
-.cube__face--left {
-  transform: rotateY(-90deg) translateZ(calc(var(--s) / 2));
-}
-.cube__face--top {
-  transform: rotateX(90deg) translateZ(calc(var(--s) / 2));
-}
-.cube__face--bottom {
-  transform: rotateX(-90deg) translateZ(calc(var(--s) / 2));
-}
-.cube__face {
-  transform-style: preserve-3d;
-}
-.cube__mark,
-.cube__label {
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-.cube__mark {
-  font-family: var(--f-mono);
-  font-size: calc(var(--s) * 0.16);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: rgba(20, 20, 20, 0.55);
-}
-.cube__label {
-  font-family: var(--f-mono);
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  color: rgba(20, 20, 20, 0.45);
-}
-.cube__core {
-  position: absolute;
-  inset: 34%;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--accent) 0 30%, transparent 31% 46%, var(--accent) 47% 56%, transparent 57%);
-  animation: counter 22s linear infinite;
-}
-@keyframes counter {
-  from {
-    transform: rotateY(0deg);
-  }
-  to {
-    transform: rotateY(-360deg);
-  }
-}
-.cube-shadow {
-  position: absolute;
-  bottom: 8%;
-  width: 46%;
-  height: 18px;
-  border-radius: 50%;
-  background: radial-gradient(rgba(0, 0, 0, 0.14), transparent 70%);
 }
 
 .rotator {
@@ -1241,14 +1138,9 @@ main:focus {
     margin: 12px 0 0;
     text-align: center;
   }
-  .hero__grid,
   .about__grid,
   .contact__grid {
     grid-template-columns: 1fr;
-  }
-  .cube-stage {
-    order: -1;
-    height: 230px;
   }
   .tabs,
   .hero-card__pitch,
@@ -1314,8 +1206,5 @@ main:focus {
   .js [data-reveal] {
     opacity: 1;
     transform: none;
-  }
-  .cube {
-    transform: rotateX(-24deg) rotateY(-32deg);
   }
 }

@@ -21,30 +21,6 @@ function RotatingRole() {
   );
 }
 
-function Cube() {
-  return (
-    <div className="cube-stage" aria-hidden="true">
-      <div className="cube">
-        <div className="cube__face cube__face--front">
-          <span className="cube__mark">JM</span>
-        </div>
-        <div className="cube__face cube__face--back">
-          <span className="cube__mark">JM</span>
-        </div>
-        <div className="cube__face cube__face--right">
-          <span className="cube__label">GO · KAFKA</span>
-        </div>
-        <div className="cube__face cube__face--left">
-          <span className="cube__label">K8S · REDIS</span>
-        </div>
-        <div className="cube__face cube__face--top" />
-        <div className="cube__face cube__face--bottom" />
-        <div className="cube__core" />
-      </div>
-      <div className="cube-shadow" />
-    </div>
-  );
-}
 
 export function Hero() {
   const [tab, setTab] = useState(audiences[0].id);
@@ -108,8 +84,6 @@ export function Hero() {
               </a>
             </div>
           </div>
-
-          <Cube />
         </div>
 
         <RotatingRole />
