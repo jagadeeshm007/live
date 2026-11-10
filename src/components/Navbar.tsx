@@ -338,7 +338,7 @@ export const Navbar = () => {
       >
         <Logo to="/">
           <LogoImage 
-            src="/uzumaki-clan-symbol/img.jpg" 
+            src={`${import.meta.env.BASE_URL}uzumaki-clan-symbol/img.jpg`} 
             alt="Uzumaki Clan Symbol"
             title="Dattebayo!"
           />
