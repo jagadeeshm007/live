@@ -3,10 +3,10 @@ import { Menu, X } from 'lucide-react';
 import { profile } from '../data/portfolio';
 
 export const navItems = [
-  { id: 'experience', label: 'Experience' },
-  { id: 'skills', label: 'Skills' },
-  { id: 'projects', label: 'Projects' },
   { id: 'approach', label: 'Approach' },
+  { id: 'work', label: 'Experience' },
+  { id: 'skills', label: 'Toolkit' },
+  { id: 'projects', label: 'Projects' },
   { id: 'contact', label: 'Contact' },
 ];
 
@@ -61,6 +61,7 @@ export function Navbar({ active }: { active: string }) {
           {open ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
+      <div className="nav__progress" id="progress" aria-hidden="true" />
     </header>
   );
 }

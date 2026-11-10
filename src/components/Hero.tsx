@@ -1,92 +1,123 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ArrowDown, FileText } from 'lucide-react';
-import { audiences, availability, profile } from '../data/portfolio';
+import { audiences, availability, profile, rewrite } from '../data/portfolio';
+import { useTabs } from '../hooks/useTabs';
 
-function RotatingRole() {
-  const roles = profile.rotatingRoles;
-  const [i, setI] = useState(0);
+/** The Go rewrite as a before/after switch — the hero's one piece of artwork. */
+function RewriteCard() {
+  const [after, setAfter] = useState(false);
+  const touched = useRef(false);
+
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const t = window.setInterval(() => setI((n) => (n + 1) % roles.length), 2600);
-    return () => window.clearInterval(t);
-  }, [roles.length]);
-  return (
-    <p className="rotator" aria-label={`Roles: ${roles.join(', ')}`}>
-      <span className="rotator__dot" aria-hidden="true" />
-      <span className="rotator__word" key={i} aria-hidden="true">
-        {roles[i]}
-      </span>
-      <span className="rotator__dot" aria-hidden="true" />
-    </p>
-  );
-}
+    // Play the improvement once on load, unless the visitor got there first.
+    const t = window.setTimeout(() => !touched.current && setAfter(true), 1100);
+    return () => window.clearTimeout(t);
+  }, []);
 
-
-export function Hero() {
-  const [tab, setTab] = useState(audiences[0].id);
-  const active = audiences.find((a) => a.id === tab) ?? audiences[0];
-
-  const onKey = (e: React.KeyboardEvent, idx: number) => {
-    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
-    e.preventDefault();
-    const next = (idx + (e.key === 'ArrowRight' ? 1 : audiences.length - 1)) % audiences.length;
-    setTab(audiences[next].id);
-    document.getElementById(`tab-${audiences[next].id}`)?.focus();
+  const pick = (v: boolean) => {
+    touched.current = true;
+    setAfter(v);
   };
 
   return (
-    <section className="hero grid-bg" id="top" aria-labelledby="hero-name">
+    <figure className={`rewrite ${after ? 'is-after' : ''}`} aria-label={rewrite.title}>
+      <figcaption className="rewrite__head">
+        <span className="rewrite__title">{rewrite.title}</span>
+        <span className="switch" role="group" aria-label="Show before or after the rewrite">
+          <button type="button" aria-pressed={!after} onClick={() => pick(false)}>
+            Before
+          </button>
+          <button type="button" aria-pressed={after} onClick={() => pick(true)}>
+            After
+          </button>
+        </span>
+      </figcaption>
+
+      <dl className="rewrite__rows">
+        {rewrite.rows.map((r) => (
+          <div className="rewrite__row" key={r.label}>
+            <dt>{r.label}</dt>
+            <dd>
+              <span className="rewrite__value" aria-live="polite">
+                {after ? r.after : r.before}
+              </span>
+              <span className="rewrite__track" aria-hidden="true">
+                <span className="rewrite__bar" style={{ width: `${after ? r.scaleAfter : r.scaleBefore}%` }} />
+              </span>
+            </dd>
+          </div>
+        ))}
+      </dl>
+      <p className="rewrite__foot">
+        <span aria-hidden="true">↗</span> {rewrite.footnote}
+      </p>
+    </figure>
+  );
+}
+
+export function Hero() {
+  const { active, tabProps, panelProps } = useTabs(
+    audiences.map((a) => a.id),
+    'aud',
+  );
+  const current = audiences.find((a) => a.id === active) ?? audiences[0];
+  const ref = useRef<HTMLElement>(null);
+
+  // Soft spotlight on the grid that follows the pointer.
+  const onMove = (e: React.PointerEvent) => {
+    if (e.pointerType !== 'mouse' || !ref.current) return;
+    const r = ref.current.getBoundingClientRect();
+    ref.current.style.setProperty('--mx', `${e.clientX - r.left}px`);
+    ref.current.style.setProperty('--my', `${e.clientY - r.top}px`);
+  };
+
+  return (
+    <section className="hero" id="top" aria-labelledby="hero-title" ref={ref} onPointerMove={onMove}>
+      <div className="hero__grid-bg" aria-hidden="true" />
       <div className="container hero__inner">
-        <a className="status" href="#contact">
-          <span className="status__dot" aria-hidden="true" />
-          {availability.facts[0].value} · {availability.facts[1].value} · {availability.facts[3].value}
-        </a>
+        <div className="hero__copy">
+          <a className="status" href="#contact">
+            <span className="status__dot" aria-hidden="true" />
+            {availability.short.join(' · ')}
+          </a>
 
-        <div className="hero__grid">
-          <div className="card hero-card">
-            <div className="hero-card__head">
-              <span className="square" aria-hidden="true" />
-              <h1 id="hero-name">
-                <span className="hero-card__name">{profile.name.toUpperCase()}</span>{' '}
-                <span className="hero-card__role">{profile.role}</span>
-              </h1>
-            </div>
+          <p className="hero__who">
+            <span className="square" aria-hidden="true" />
+            <strong>{profile.name}</strong> — {profile.role}, {profile.location}
+          </p>
 
-            <div className="tabs" role="tablist" aria-label="Who is reading?">
-              {audiences.map((a, idx) => (
-                <button
-                  key={a.id}
-                  id={`tab-${a.id}`}
-                  role="tab"
-                  type="button"
-                  aria-selected={tab === a.id}
-                  aria-controls="hero-panel"
-                  tabIndex={tab === a.id ? 0 : -1}
-                  className="tab"
-                  onClick={() => setTab(a.id)}
-                  onKeyDown={(e) => onKey(e, idx)}
-                >
+          <h1 className="hero__title" id="hero-title">
+            I own problems <em>end to end</em> — from the first report to the production fix.
+          </h1>
+
+          <div className="aud">
+            <div className="aud__tabs" role="tablist" aria-label="Who is reading?">
+              <span className="aud__for" aria-hidden="true">
+                For
+              </span>
+              {audiences.map((a) => (
+                <button className="aud__tab" key={a.id} {...tabProps(a.id)}>
                   {a.label}
                 </button>
               ))}
             </div>
-            <p className="hero-card__pitch" id="hero-panel" role="tabpanel" aria-labelledby={`tab-${active.id}`} key={active.id}>
-              {active.pitch}
+            <p className="aud__pitch" key={current.id} {...panelProps}>
+              {current.pitch}
             </p>
+          </div>
 
-            <div className="hero-card__actions">
-              <a className="btn btn--dark" href="#experience">
-                View experience <ArrowDown size={15} aria-hidden="true" />
-              </a>
-              <a className="btn" href={profile.links.resume} target="_blank" rel="noopener noreferrer">
-                <FileText size={15} aria-hidden="true" /> Resume
-                <span className="sr-only"> (PDF, opens in a new tab)</span>
-              </a>
-            </div>
+          <div className="hero__actions">
+            <a className="btn btn--dark" href="#work">
+              See the work <ArrowDown size={15} aria-hidden="true" />
+            </a>
+            <a className="btn" href={profile.links.resume} target="_blank" rel="noopener noreferrer">
+              <FileText size={15} aria-hidden="true" /> Resume
+              <span className="sr-only"> (PDF, opens in a new tab)</span>
+            </a>
           </div>
         </div>
 
-        <RotatingRole />
+        <RewriteCard />
       </div>
     </section>
   );

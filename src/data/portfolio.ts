@@ -1,6 +1,6 @@
 /**
- * All site content. Facts come from the resume (public/Jagadeesh-Mandala-Resume.pdf).
- * Edit here; components only render this data.
+ * All site content. Facts come from the resume (public/Jagadeesh-Mandala-Resume.pdf);
+ * the framing is editorial. Edit here — components only render this data.
  */
 
 export const profile = {
@@ -9,210 +9,207 @@ export const profile = {
   title: 'Associate Software Engineer',
   company: 'Apxor Technology',
   location: 'Hyderabad, India',
-  summary:
-    'I build backend systems, data pipelines and platforms that stay fast and reliable at scale — and the interfaces people use on top of them. At Apxor I work on the analytics infrastructure behind apps used by more than 100 million people.',
   links: {
     email: 'jagadeeshm943@gmail.com',
     linkedin: 'https://linkedin.com/in/mandalajagadeesh',
     github: 'https://github.com/jagadeeshm007',
     resume: 'Jagadeesh-Mandala-Resume.pdf',
   },
-  rotatingRoles: ['Backend Engineer', 'Platform Engineer', 'AI Engineer', 'Software Engineer'],
 } as const;
 
-/** Hero card: one pitch per audience, switched with tabs. */
+export const availability = {
+  short: ['Open to work', 'Immediate joiner', 'Open to relocation'],
+  roles: ['Backend Engineer', 'Platform / DevOps', 'Site Reliability', 'AI / LLM Engineer', 'Full-stack'],
+};
+
+/** Hero: one short pitch per reader. */
 export const audiences: { id: string; label: string; pitch: string }[] = [
   {
     id: 'anyone',
     label: 'Anyone',
-    pitch:
-      'I build software that stays fast and reliable at scale — from Go services and Kafka pipelines to the dashboards people use every day.',
+    pitch: 'I build the systems behind apps used by 100M+ people — and keep them fast, safe and running.',
   },
   {
     id: 'engineers',
     label: 'Engineers',
-    pitch:
-      'Go, Kafka, Redis, ClickHouse, Kubernetes. I rewrote JVM services in Go — p99 110 → 75 ms, memory 400 → 65 MB per pod — and take on-call for data infrastructure at ~9M Redis commands/sec.',
+    pitch: 'Go, Kafka, Redis, ClickHouse and Kubernetes in production. I profile first, then rewrite: p99 down 32%, memory down 84%.',
   },
   {
     id: 'hiring',
     label: 'Hiring teams',
-    pitch:
-      'Associate Software Engineer at Apxor, owning client issues end to end for teams like GCash, Porter and ICICI Bank. Open to work, immediate joiner, open to relocation.',
+    pitch: 'An engineer who takes the problem, not just the ticket. Available now, and open to relocation.',
   },
   {
     id: 'founders',
     label: 'Founders',
-    pitch:
-      'I ship complete products: Latte audits 100% of recorded sales calls with LLMs, exposed as a platform with a REST API, signed webhooks and SDKs in 4 languages.',
+    pitch: 'I ship whole products: Latte audits 100% of sales calls with AI, with an API, webhooks and SDKs in 4 languages.',
   },
 ];
 
-export const availability = {
-  headline: 'Open to new opportunities',
-  facts: [
-    { label: 'Status', value: 'Open to work' },
-    { label: 'Notice period', value: 'Immediate joiner' },
-    { label: 'Based in', value: 'Hyderabad, India' },
-    { label: 'Relocation', value: 'Open to relocation' },
+/** Hero artwork: the Go rewrite as a before/after switch. `scale` is the bar width in %. */
+export const rewrite = {
+  title: 'Legacy services, rewritten in Go',
+  rows: [
+    { label: 'p99 latency', before: '110 ms', after: '75 ms', scaleBefore: 100, scaleAfter: 68 },
+    { label: 'Memory / pod', before: '400 MB', after: '65 MB', scaleBefore: 100, scaleAfter: 16 },
+    { label: 'Startup', before: '9 s', after: '1 s', scaleBefore: 100, scaleAfter: 11 },
   ],
-  roles: [
-    'Software Engineer — Backend',
-    'Platform / DevOps Engineer',
-    'Site Reliability Engineer',
-    'AI / LLM Engineer',
-    'Full-stack Engineer',
-  ],
+  footnote: '+32% throughput per pod',
 };
 
-export const impact: { value: string; label: string }[] = [
-  { value: '100M+', label: 'end users on client apps I support' },
-  { value: '−32%', label: 'p99 latency after the Go rewrite' },
-  { value: '−84%', label: 'memory per pod (400 → 65 MB)' },
-  { value: '~9M/s', label: 'Redis commands on infra I run' },
-  { value: '100+', label: 'production incidents resolved' },
-  { value: '0', label: 'downtime across Kubernetes rollouts' },
+export const numbers: { prefix?: string; value: number; suffix: string; label: string }[] = [
+  { value: 100, suffix: 'M+', label: 'people use the apps I support' },
+  { prefix: '~', value: 9, suffix: 'M/s', label: 'Redis commands on infrastructure I run' },
+  { value: 100, suffix: '+', label: 'production incidents resolved on call' },
+  { value: 0, suffix: '', label: 'downtime across Kubernetes rollouts' },
 ];
 
-export const certifications = ['Red Hat Certified System Administrator (RHCSA)', 'AWS Certified Cloud Practitioner'];
+/* ------------------------------------------------------------ how I work */
+
+export type Trait = { id: string; word: string; belief: string; proof: { text: string; where: string }[] };
+
+export const traits: Trait[] = [
+  {
+    id: 'ownership',
+    word: 'Ownership',
+    belief: 'If it’s broken for the user, it’s mine until it’s fixed.',
+    proof: [
+      { text: 'Take client issues from the first report to the production fix — across web, Android and iOS.', where: 'Apxor' },
+      { text: 'Resolved 100+ production incidents on call, each closed with a root cause.', where: 'Apxor' },
+      { text: 'Wrote postmortems that stopped the same failures from coming back.', where: 'Apxor' },
+    ],
+  },
+  {
+    id: 'proactive',
+    word: 'Proactive',
+    belief: 'I’d rather prevent the page than answer it.',
+    proof: [
+      { text: 'Profiled heavy JVM services and rewrote them in Go instead of paying to scale them.', where: 'Apxor' },
+      { text: 'Built prompt-injection detection and PII masking into the AI assistant from day one.', where: 'Apxor' },
+      { text: 'Evals gate every prompt or model change in CI, so regressions never ship.', where: 'Latte' },
+    ],
+  },
+  {
+    id: 'collaborative',
+    word: 'Collaborative',
+    belief: 'Good systems start with a good conversation.',
+    proof: [
+      { text: 'Partner with client teams at GCash, Porter and ICICI Bank to scope what they need to measure.', where: 'Apxor' },
+      { text: 'Shaped service boundaries with the team; my utilities were adopted across the codebase.', where: 'Zengen' },
+      { text: 'Built Latte as a platform others can build on — API, signed webhooks, SDKs in 4 languages.', where: 'Latte' },
+    ],
+  },
+];
 
 /* -------------------------------------------------------------- experience */
 
-export type Highlight = {
+export type Story = {
+  id: string;
+  tab: string;
   title: string;
-  summary: string;
-  problem: string;
-  action: string;
-  result: string;
-  metrics?: string[];
+  metric: string;
+  metricLabel: string;
+  body: string;
+  facts: string[];
   stack: string[];
 };
 
-export type Role = {
-  company: string;
-  role: string;
-  period: string;
-  location: string;
-  context: string;
-  highlights: Highlight[];
+export const apxor = {
+  company: 'Apxor Technology',
+  role: 'Associate Software Engineer',
+  period: 'Aug 2025 — Present',
+  location: 'Hyderabad',
+  context: 'Analytics for client apps from GCash, Porter and ICICI Bank — used by more than 100 million people.',
+  stories: [
+    {
+      id: 'rewrite',
+      tab: 'The Go rewrite',
+      title: 'From 9 seconds to 1',
+      metric: '9×',
+      metricLabel: 'faster startup',
+      body: 'The legacy Scala and Java services worked, but every pod paid for their weight. I rewrote them in Go, letting pprof — not opinion — decide what to optimize.',
+      facts: ['p99 110 → 75 ms', 'Memory 400 → 65 MB', '+32% throughput'],
+      stack: ['Go', 'pprof', 'Goroutines'],
+    },
+    {
+      id: 'assistant',
+      tab: 'The AI assistant',
+      title: 'Ask the data a question',
+      metric: '500+',
+      metricLabel: 'event types indexed',
+      body: 'I architected an agentic assistant that plans, uses tools and keeps memory to turn plain-language questions into charts — with guardrails, prompt-injection detection and PII masking, because it handles enterprise data.',
+      facts: ['RAG over Chroma', 'Secured for enterprise'],
+      stack: ['LangGraph', 'FastAPI', 'RAG', 'Chroma'],
+    },
+    {
+      id: 'pipeline',
+      tab: 'The event pipeline',
+      title: 'Every event, delivered safely',
+      metric: '≈ 0',
+      metricLabel: 'consumer lag',
+      body: 'Clients wanted raw events in their own cloud buckets, where a duplicate or a gap would quietly corrupt analysis. I built an idempotent Go service with safe retries that streams Parquet through Kafka.',
+      facts: ['40 consumers', 'GCP & AWS buckets', 'Daily Spark batch'],
+      stack: ['Go', 'Kafka', 'Parquet', 'Spark'],
+    },
+    {
+      id: 'reliability',
+      tab: 'Keeping it up',
+      title: 'No good time to go down',
+      metric: '100+',
+      metricLabel: 'incidents resolved',
+      body: 'I ship zero-downtime rollouts on GKE and EKS through GitOps, and take on-call for the data layer: a 21-node Redis cluster, ClickHouse and Kafka, watched on golden signals in Grafana.',
+      facts: ['~9M Redis cmd/s', '3,600+ clients', 'Terraform IaC'],
+      stack: ['Kubernetes', 'ArgoCD', 'Helm', 'Terraform', 'Grafana'],
+    },
+    {
+      id: 'clients',
+      tab: 'The client side',
+      title: 'One owner, report to fix',
+      metric: '100M+',
+      metricLabel: 'end users',
+      body: 'When a client says “the numbers look wrong”, I follow it through web, Android, iOS and the backend until it is fixed in production. I also built their React dashboards, with a virtualized grid for 10,000+ rows.',
+      facts: ['GCash · Porter · ICICI Bank', '10,000+ row grids'],
+      stack: ['React', 'TypeScript', 'Android', 'iOS'],
+    },
+  ] as Story[],
 };
 
-export const experience: Role[] = [
-  {
-    company: 'Apxor Technology',
-    role: 'Associate Software Engineer',
-    period: 'Aug 2025 — Present',
-    location: 'Hyderabad, India',
-    context:
-      'Mobile analytics and engagement for client teams at GCash, Porter and ICICI Bank — apps used by more than 100 million people. I work across Go services, Kafka, Redis, ClickHouse, Kubernetes, React dashboards and an AI assistant for enterprise data.',
-    highlights: [
-      {
-        title: 'Rewrote legacy services in Go',
-        summary: 'Replaced heavy Scala and Java microservices with Go, guided by profiling rather than guesswork.',
-        problem: 'Core services needed 400 MB per pod, took 9 s to start and sat at a p99 of 110 ms.',
-        action: 'Rewrote them in Go using goroutine concurrency, with pprof showing where CPU time and allocations went.',
-        result: 'Lighter services that start almost instantly and handle more traffic per pod.',
-        metrics: ['p99 110 → 75 ms', 'Memory 400 → 65 MB', 'Startup 9 s → 1 s', '+32% throughput'],
-        stack: ['Go', 'pprof', 'Goroutines'],
-      },
-      {
-        title: 'Built an agentic analytics assistant',
-        summary: 'Turns plain-language questions into charts — secured for enterprise data.',
-        problem: 'Answers were spread across 500+ event types and took analyst time to assemble.',
-        action:
-          'Architected an assistant with RAG, LangGraph and FastAPI that plans, uses tools and keeps memory, over a Chroma vector DB of event types. Added guardrails, prompt-injection detection and PII masking.',
-        result: 'Natural-language questions become charts, with security designed in from the start.',
-        metrics: ['500+ event types'],
-        stack: ['RAG', 'LangGraph', 'FastAPI', 'Chroma'],
-      },
-      {
-        title: 'Engineered a safe event-delivery pipeline',
-        summary: 'Streams client events as Parquet through Kafka into client cloud buckets — retries included.',
-        problem: 'Events had to reach each client’s GCP or AWS bucket without duplicates or gaps, even across retries and restarts.',
-        action: 'Built an idempotent Go service with safe retries, run by 40 Kafka consumers, plus a daily Spark batch job.',
-        result: 'Consumer lag held near zero, and retries became safe by design.',
-        metrics: ['40 consumers', 'Lag ≈ 0'],
-        stack: ['Go', 'Kafka', 'Parquet', 'Spark'],
-      },
-      {
-        title: 'Ran zero-downtime Kubernetes delivery',
-        summary: 'GitOps releases across GKE and AWS EKS, with infrastructure as code.',
-        problem: 'With 100M+ end users, deployments had to be routine and invisible.',
-        action: 'Delivered rollouts via ArgoCD, Helm and Tanka, GitHub Actions CI/CD, and Terraform with IAM and secrets.',
-        result: 'Every release is a reviewed, versioned, reversible Git commit.',
-        stack: ['Kubernetes', 'ArgoCD', 'Helm', 'Terraform'],
-      },
-      {
-        title: 'Kept data infrastructure healthy on call',
-        summary: 'Redis, ClickHouse and Kafka under real load, watched on golden signals.',
-        problem: 'A 21-node Redis cluster at ~9M commands/sec for 3,600+ clients, ClickHouse at ~20K rows/sec, Kafka groups of up to 116 consumers.',
-        action: 'Tracked latency, traffic, errors and saturation in Grafana; closed every incident with root-cause analysis and a postmortem.',
-        result: '100+ production incidents resolved, with postmortems that prevented repeats.',
-        metrics: ['100+ incidents', '~9M cmd/s'],
-        stack: ['Redis', 'ClickHouse', 'Kafka', 'Grafana'],
-      },
-      {
-        title: 'Owned client issues end to end',
-        summary: 'One accountable engineer from first report to production fix — across web, Android and iOS.',
-        problem: 'Analytics issues rarely live in one layer, and hand-offs slow everything down.',
-        action: 'Partnered with client teams to scope their analytics needs, then traced each issue to its root cause and shipped the fix.',
-        result: 'Fixes land in production, not in a ticket queue.',
-        stack: ['Web', 'Android', 'iOS'],
-      },
-      {
-        title: 'Built fast, data-dense dashboards',
-        summary: 'React and TypeScript dashboards, plus a virtualized rendering library.',
-        problem: 'Data grids with tens of thousands of cells froze the browser.',
-        action: 'Built a virtualized rendering library that only draws what is on screen. Adopted AI coding agents (Claude Code, MCP) for coding, tests and docs — with full review.',
-        result: 'Grids of 10,000+ rows that stay responsive.',
-        metrics: ['10,000+ rows'],
-        stack: ['React', 'TypeScript'],
-      },
-    ],
-  },
-  {
-    company: 'Zengen LLP',
-    role: 'Software Development Intern',
-    period: 'Jan 2025 — Jun 2025',
-    location: 'Chennai, India',
-    context: 'A growing CRM product.',
-    highlights: [
-      {
-        title: 'Shipped full-stack CRM features',
-        summary: 'Features across the React frontend and Node.js REST APIs, including live notifications.',
-        problem: 'The product was growing quickly, and new features had to land without tangling the codebase.',
-        action: 'Delivered features end to end, helped shape service boundaries, and wrote reusable utilities.',
-        result: 'The utilities were adopted across the codebase.',
-        stack: ['React', 'Node.js', 'REST'],
-      },
-    ],
-  },
-];
+export const earlier = {
+  company: 'Zengen LLP',
+  role: 'Software Development Intern',
+  period: 'Jan — Jun 2025',
+  location: 'Chennai',
+  line: 'Shipped CRM features across React and Node.js REST APIs, with live notifications.',
+};
 
 /* ------------------------------------------------------------------ skills */
 
-export type SkillGroup = { name: string; core: string[]; more: string[] };
+export type SkillGroup = { id: string; name: string; core: string[]; more: string[] };
 
 export const skills: SkillGroup[] = [
-  { name: 'Languages', core: ['Go', 'Python', 'TypeScript'], more: ['JavaScript', 'SQL', 'Java'] },
+  { id: 'lang', name: 'Languages', core: ['Go', 'Python', 'TypeScript'], more: ['JavaScript', 'SQL', 'Java'] },
   {
+    id: 'data',
     name: 'Backend & Data',
     core: ['Kafka', 'Redis', 'ClickHouse'],
-    more: ['FastAPI', 'REST', 'gRPC', 'Temporal', 'Spark', 'Node.js', 'PostgreSQL', 'MongoDB'],
+    more: ['FastAPI', 'gRPC', 'REST', 'Temporal', 'Spark', 'Node.js', 'PostgreSQL', 'MongoDB'],
   },
   {
+    id: 'cloud',
     name: 'Cloud & Reliability',
     core: ['Kubernetes', 'ArgoCD', 'Terraform'],
     more: ['Docker', 'Helm', 'CI/CD', 'AWS', 'GCP', 'Prometheus', 'Grafana', 'Loki'],
   },
   {
-    name: 'AI & LLMs',
+    id: 'ai',
+    name: 'AI & Agents',
     core: ['RAG', 'LangGraph', 'Guardrails'],
-    more: ['LangChain', 'LLM APIs', 'Embeddings', 'Chroma', 'AI agents', 'Tool use', 'Evals'],
+    more: ['LangChain', 'LLM APIs', 'Embeddings', 'Chroma', 'Evals', 'Claude Code', 'MCP'],
   },
-  { name: 'Frontend', core: ['React', 'TypeScript'], more: ['Next.js', 'TanStack Query', 'Zustand'] },
-  { name: 'Agentic Tooling', core: ['Claude Code', 'MCP'], more: ['Subagents', 'Connectors', 'Tool calling', 'Skills'] },
+  { id: 'web', name: 'Frontend', core: ['React'], more: ['Next.js', 'TanStack Query', 'Zustand'] },
 ];
+
+export const certifications = ['RHCSA — Red Hat Certified System Administrator', 'AWS Certified Cloud Practitioner'];
 
 /* ---------------------------------------------------------------- projects */
 
@@ -220,10 +217,9 @@ export type Project = {
   id: string;
   name: string;
   tagline: string;
-  what: string;
   why: string;
-  how: { step: string; body: string }[];
-  built: string[];
+  steps: { name: string; body: string }[];
+  proof: string;
   stack: string[];
   github: string;
   live?: string;
@@ -233,53 +229,32 @@ export const projects: Project[] = [
   {
     id: 'latte',
     name: 'Latte',
-    tagline: 'AI sales-call compliance & coaching',
-    what: 'A compliance platform that audits every recorded sales call and flags breaches with the evidence attached.',
-    why: 'Compliance teams usually review a sample of calls, so most breaches are never heard. Latte audits 100% of them.',
-    how: [
-      { step: 'Listen', body: 'Per-speaker transcription with Whisper, plus Sarvam for 10 Indian languages.' },
-      { step: 'Judge', body: 'One LLM judge call per conversation, bound to a strict JSON schema.' },
-      { step: 'Protect', body: 'PII masking, with access behind SSO.' },
-      { step: 'Integrate', body: 'REST API with scoped keys, signed webhooks and SDKs in 4 languages.' },
+    tagline: 'AI that audits every sales call',
+    why: 'Compliance teams review a sample of calls, so most breaches are never heard. Latte audits 100% of them and flags each breach with evidence.',
+    steps: [
+      { name: 'Listen', body: 'Per-speaker transcription with Whisper, plus Sarvam for 10 Indian languages.' },
+      { name: 'Judge', body: 'One LLM call per conversation, bound to a strict JSON schema.' },
+      { name: 'Protect', body: 'PII is masked, and access sits behind SSO.' },
+      { name: 'Integrate', body: 'REST API with scoped keys, signed webhooks and SDKs in 4 languages.' },
     ],
-    built: [
-      'Queued workers process batches of up to 500 calls',
-      'Model gateway enforces token caps and rate limits',
-      'Evals on 20 labelled calls gate every prompt or model change in CI',
-    ],
-    stack: ['TypeScript', 'React', 'PostgreSQL', 'LLM APIs', 'Whisper'],
+    proof: 'Evals on labelled calls gate every prompt or model change in CI.',
+    stack: ['TypeScript', 'React', 'PostgreSQL', 'Whisper'],
     github: 'https://github.com/jagadeeshm007/Latte',
     live: 'https://latte-delta.vercel.app/dashboard',
   },
   {
     id: 'nemo',
     name: 'Nemo',
-    tagline: 'Agentic RAG assistant',
-    what: 'An assistant that answers questions over team documents and runs multi-step tasks with tool-calling agents.',
+    tagline: 'An assistant that answers and acts',
     why: 'Useful answers — and useful actions — need retrieval, tools, auth and durable execution, not just a chat prompt.',
-    how: [
-      { step: 'Route', body: 'Six services behind a single Go gateway.' },
-      { step: 'Retrieve', body: 'RAG over Chroma grounds every answer in team documents.' },
-      { step: 'Act', body: 'An agent engine with a tool registry, across 3 LLM providers.' },
-      { step: 'Endure', body: 'Keycloak service auth, Vault secrets, Temporal durable workflows on Kubernetes.' },
+    steps: [
+      { name: 'Route', body: 'Six services behind a single Go gateway.' },
+      { name: 'Retrieve', body: 'RAG over Chroma grounds every answer in team documents.' },
+      { name: 'Act', body: 'An agent engine with a tool registry, across 3 LLM providers.' },
+      { name: 'Endure', body: 'Keycloak auth, Vault secrets and Temporal durable workflows on Kubernetes.' },
     ],
-    built: [
-      'Service-oriented from day one: each service has one job',
-      'Durable workflows so multi-step agent runs survive failures',
-      'Provider-agnostic agents across 3 LLM providers',
-    ],
-    stack: ['Go', 'Python', 'FastAPI', 'LangChain', 'Kafka', 'Kubernetes'],
+    proof: 'Durable workflows let multi-step agent runs survive failures.',
+    stack: ['Go', 'Python', 'FastAPI', 'Kafka', 'Kubernetes'],
     github: 'https://github.com/jagadeeshm007/nemo',
   },
-];
-
-/* -------------------------------------------------------------- principles */
-
-export const principles: { title: string; body: string }[] = [
-  { title: 'Own it end to end', body: 'A ticket is done when the problem is fixed in production — whichever layer it lives in.' },
-  { title: 'Measure before optimizing', body: 'Profiles, p99s and dashboards decide what to change, not hunches.' },
-  { title: 'Make failure boring', body: 'Idempotency, safe retries and zero-downtime rollouts turn bad days into non-events.' },
-  { title: 'Design security in', body: 'Guardrails, PII masking, scoped keys and managed secrets belong in the first diagram.' },
-  { title: 'Fix the class of bug', body: 'Every incident ends with a postmortem and a change that stops it coming back.' },
-  { title: 'Do more with less', body: 'Lean services and bounded LLM costs — efficiency is a feature.' },
 ];
