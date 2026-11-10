@@ -3,14 +3,14 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://jagadeeshm007.github.io/live/",
+  "homepage": "https://jagadeeshm007.github.io/live/legacy/",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
-    "deploy:dev": "gh-pages -d dist --message 'Deploying to GitHub Pages' --no-silent"
+    "deploy": "gh-pages -d dist -e legacy -m 'Deploy legacy portfolio to /live/legacy/'",
+    "deploy:dev": "gh-pages -d dist -e legacy --message 'Deploying legacy portfolio to GitHub Pages' --no-silent"
   },
   "devDependencies": {
     "@types/react-dom": "^19.0.4",
