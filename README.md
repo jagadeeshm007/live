@@ -9,8 +9,10 @@ npm install
 npm run dev        # local dev server
 npm run build      # type-check + production build → dist/
 npm run preview    # serve the production build
-npm run deploy     # publish dist/ to GitHub Pages
+npm run deploy     # publish dist/ to GitHub Pages (keeps /legacy/)
 ```
+
+The previous portfolio is kept on the `legacy-portfolio` branch and served at `/live/legacy/`. Its `npm run deploy` only writes to the `legacy/` folder of `gh-pages`, and this repo's deploy (`scripts/deploy.mjs`) never removes that folder.
 
 ## How it works
 

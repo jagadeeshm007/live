@@ -10,7 +10,7 @@
     "build": "tsc --noEmit -p tsconfig.json && vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "node scripts/deploy.mjs"
   },
   "dependencies": {
     "@react-three/fiber": "^9.8.2",
